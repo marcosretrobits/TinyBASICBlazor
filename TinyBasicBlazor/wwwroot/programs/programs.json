@@ -1,0 +1,32 @@
+﻿[
+  {
+    "name": "Tic Tac Toe",
+    "fileName": "TicTacToe.txt",
+    "input": "256"
+  },
+  {
+    "name": "Life",
+    "fileName": "LifeTB.txt",
+    "input": ""
+  },
+  {
+    "name": "Tiny Adventure",
+    "fileName": "Advent.txt",
+    "input": ""
+  },
+  {
+    "name": "The Kingdom of Euphoria",
+    "fileName": "Euphoria.txt",
+    "input": ""
+  },
+  {
+    "name": "Random numbers",
+    "fileName": "random.txt",
+    "input": ""
+  },
+  {
+    "name": "Hex memory dump",
+    "fileName": "HexDump.txt",
+    "input": ""
+  }  
+]

@@ -1,0 +1,57 @@
+﻿@inject HttpClient HttpClient
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">TinyBasicBlazor</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <div class="content px-1">
+        <h6>Load program:</h6>
+        <ul>
+            <!--
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>
+                -->
+            <li>
+                <a href="" @onclick="e => Load()">Tic-Tac-Toe</a> (<a href="">Listing</a>)
+            </li>
+        </ul>
+    </div>
+</div>
+
+@code {
+
+    TinyBasicConsole tinyBasicConsole;
+
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    async void Load()
+    {
+        string programFileName = "TicTacToe.txt";
+        var program = await HttpClient.GetStringAsync($"programs/{programFileName}");
+        tinyBasicConsole.TypeAndRun(program);
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

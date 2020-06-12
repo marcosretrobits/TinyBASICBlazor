@@ -1,0 +1,57 @@
+﻿@inject HttpClient HttpClient
+
+    <div class="content px-1">
+
+        @if (programs == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            <h6>Load program:</h6>
+            <ul>
+                @foreach (var program in programs)
+                {
+                    <li>
+                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => Load(GetProgramFilePath(program.FileName), program.Input)" @onclick:preventDefault>@program.Name</a>
+                        (<a href="@GetProgramFilePath(program.FileName)" target="_blank">Listing</a>)
+                    </li>
+                }
+            </ul>
+        }
+
+    </div>
+
+@code {
+
+    public class Program
+    {
+        public string Name { get; set; }
+
+        public string FileName { get; set; }
+
+        public string Input { get; set; }
+    }
+
+    [Parameter]
+    public TinyBasicConsole tinyBasicConsole { get; set; }
+
+    private Program[] programs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        programs = await HttpClient.GetFromJsonAsync<Program[]>(GetProgramFilePath("programs.json"));
+    }
+
+    private string GetProgramFilePath(string fileName)
+    {
+        return $"programs/{fileName}";
+    }
+
+    private async void Load(string programFilePath, string programInput)
+    {
+        var program = await HttpClient.GetStringAsync(programFilePath);
+        tinyBasicConsole.TypeAndRun(program, programInput);
+    }
+
+}

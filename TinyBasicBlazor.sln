@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyBasicBlazor", "TinyBasicBlazor\TinyBasicBlazor.csproj", "{AF5C5CB5-ABF2-40C1-85C2-DD954965AC4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyBasic", "TinyBasic\TinyBasic.csproj", "{38745F02-08C9-4379-9589-7E30E0CDCE39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF5C5CB5-ABF2-40C1-85C2-DD954965AC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5C5CB5-ABF2-40C1-85C2-DD954965AC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5C5CB5-ABF2-40C1-85C2-DD954965AC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5C5CB5-ABF2-40C1-85C2-DD954965AC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38745F02-08C9-4379-9589-7E30E0CDCE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38745F02-08C9-4379-9589-7E30E0CDCE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38745F02-08C9-4379-9589-7E30E0CDCE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38745F02-08C9-4379-9589-7E30E0CDCE39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD0DDE3D-A174-4D58-A79C-DAAD7696B922}
+	EndGlobalSection
+EndGlobal

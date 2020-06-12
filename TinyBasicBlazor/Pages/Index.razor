@@ -1,0 +1,64 @@
+﻿@page "/"
+
+<div class="sidebar">
+
+    <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">TinyBasicBlazor</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <Programs tinyBasicConsole="tinyBasicConsole"/>
+    </div>
+
+</div>
+
+<div class="main">
+    <div class="top-row px-4">
+        <a href="https://retrobits.altervista.org" target="_blank" class="ml-md-auto">marco's retrobits</a>
+    </div>
+
+    <div class="content px-4">
+
+        <h1>10 PRINT "Hello!"</h1>
+        <p>
+            Welcome to TinyBasicBlazor, an experimental interactive
+            <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1">Blazor</a>
+            <a href="https://webassembly.org/">WebAssembly</a>
+            <a href="https://en.wikipedia.org/wiki/Tiny_BASIC">Tiny Basic</a>
+            environment by <a href="https://retrobits.altervista.org/">Marco Varesio</a>.
+            <br />
+            Based on <a href="http://www.thisiscool.com/tinybasicnet.htm">TinyBasic.NET</a>,
+            <a href="http://www.thisiscool.com">Mohan Embar</a>'s
+            <a href="http://www.thisiscool.com/tinybasicnet.htm">C#</a>
+            <a href="http://www.thisiscool.com/tinybasic.htm">port</a> of
+            <a href="http://www.ittybittycomputers.com/">Tom Pittman</a>'s <a href="http://www.ittybittycomputers.com/IttyBitty/TinyBasic/index.htm">Tiny Basic</a> interpreter
+            <a href="http://www.ittybittycomputers.com/IttyBitty/TinyBasic/TinyBasic.c">C rewrite</a>.
+        </p>
+
+        <TinyBasicConsole Id="tinyBasicConsole" Rows="24" Cols="80" @ref="tinyBasicConsole" />
+
+        <div class="alert alert-secondary mt-4" role="alert">
+            <span class="text-nowrap">
+                TinyBasic interpreter Copyright 1976 Itty Bitty Computers, used by permission.
+            </span>
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+    TinyBasicConsole tinyBasicConsole;
+
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

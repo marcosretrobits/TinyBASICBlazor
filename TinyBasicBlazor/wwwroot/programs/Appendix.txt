@@ -1,0 +1,157 @@
+APPENDIX - Binary Search Speedup Code
+ 
+1802
+
+0000 ;       .. TINY BASIC BINARY SEARCH SPEEDUP -- 81 MAY 9 
+0000 :       ... NOTE: one-byte Lines with Line in [3328..3583] bomb.
+05DA C000C0;       LBR SRCH
+00C0 ;             ORG 192                .. ASSUME THIS IS VACANT
+00C0 BB;     SRCH: PHI 11 
+00C1 4D;           LDA 13 
+00C2 AB;           PLO 11 
+00C3 1D;           INC 13 
+00C4 1D;           INC 13 
+00C5 4D;           LDA 13                 .. GET PROG END
+00C6 FF01;         SMI 1 
+00C8 B8;           PHI 8 
+00C9 E2;     HALF: SEX 2                  .. BISECT THE REGION 
+00CA 9B;           GHI 11 
+00CB 52;           STR 2 
+00CC 98;           GHI 8 
+00CD F7;           SM 
+00CE CB05DD;       LBNF FLINE 
+00D1 F6;           SHR 
+00D2 C205DD;       LBZ FLINE              .. TOO SMALL ... 
+00D5 F4;           ADD 
+00D6 BF;           PHI 15 
+00D7 F800;         LDI 0 
+00D9 AF;           PLO 15 
+00DA 1F;           INC 15 
+00DB 4F;     FLNO: LDA 15                 .. FIND A LINE NUMBER 
+00DC FBOD;         XRI 13 
+00DE 3ADB;         BNZ FLNO 
+00E0 1F;           INC 15 
+00E1 7C01;         ADCI 1 
+00E3 F6;           SHR 
+00E4 33DA;         BDF FLNO-1             .. (SKIP TWO TO SYNC)
+00E6 EF;           SEX 15
+00E7 4F;           LDA 15                 .. END? 
+00E8 Fl;           OR 
+00E9 32F8;         BZ HIGH                .. YES. 
+00EB 8A;           GLO 10 
+00EC F7;           SM 
+00ED 2F;           DEC 15
+00EE 9A;           GHI 10 
+00EF 77;           SMB 
+00F0 3BF8;         BNF HIGH
+00F2 8F;           GLO 15                 .. TOO LOW 
+00F3 AB;           PLO 11 
+00F4 9F;           GHI 15 
+00F5 BB;           PHI 11 
+00F6 30C9;         BR HALF 
+00F8 9F;     HIGH: GHI 15                 .. TOO HIGH
+00F9 30C8;         BR HALF-1
+
+6502 
+            ; BINARY SEARCH SPEEDUP
+0200=       COLD    EQU     $200
+0476                ORG     COLD+$276 
+0476 4CC70A         JMP     BINARY 
+047C=       FLINE   EQU     *+3 
+0414=       CHAR    EQU     COLD+$214 
+0020=       BASIC   EQU     32 
+0024=       MEND    EQU     36 
+00BC=       TEMP    EQU     $BC 
+002C=       BP      EQU     44 
+00C9                ORG     $C9 
+00C9=       LO      EQU     *             ;3 BYTES SCRATCHPAD 
+00CA=       HI      EQU     *+l 
+0AC7                ORG     COLD+$8C7     ;NEED 73 BYTES ANYWHERE 
+0AC7 85C8   BINARY  STA     LO-1 
+0AC9 A521           LDA     BASIC+l 
+0ACB 85C9           STA     LO 
+0ACD A525           LDA     MEND+l 
+0ACF 85CA   SLICE   STA     HI 
+0AD1 38             SEC 
+0AD2 E5C9           SBC     LO 
+0AD4 4A             LSR     A 
+0AD5 F030           BEQ     DONE 
+0AD7 18             CLC 
+0AD8 65C9           ADC     LO 
+0ADA 852D           STA     BP+l 
+0ADC A5C8           LDA     LO-1 
+0ADE 852C           STA     BP 
+0AE0 201404         JSR     CHAR 
+0AE3 D0FB           BNE     *-3 
+0AE5 201404         JSR     CHAR 
+0AE8 201404         JSR     CHAR 
+0AEB 201404         JSR     CHAR 
+0AEE D0FB           BNE     *-3 
+0AF0 A5BC           LDA     TEMP 
+0AF2 D12C           CMP     (BP),Y 
+0AF4 C8             INY 
+0AF5 A5BD           LDA     TEMPO 
+0AF7 F12C           SBC     (BP),Y 
+0AF9 A52D           LDA     BP+l 
+0AF8 90D2           BCC     SLICE 
+0AFD 85C9           STA     LO 
+0AFF A52C           LDA     BP 
+0B01 85C8           STA     LO-1 
+0B03 A5CA           LDA     HI 
+0B05 D0CB           BNE     SLICE+3
+0B07 A5C8   DONE    LDA     LO-1 
+0B09 852C           STA     BP 
+0B0B A5C9           LDA     LO 
+0B0D 4C7A04         JMP     FLINE-2 
+0285                ORG     COLD+$85 
+0285 A9 010         LDA     16             ; NO OVERLAP USER 
+
+6800 
+                    *  BINARY SEARCH SPEEDUP 
+                            ORG     COLD+$425 
+0525 7E 0900                JMP     BINARY 
+                    FLINE   EQU     COLD+$429
+                    TEMP    EQU     $BC 
+                    BP      EQU     $2C 
+                    BASIC   EQU     $20 
+                    MEND    EQU     $24 
+                    LO      EQU     $C8           4 BYTES SCRATCH 
+                    HI      EQU     $CA 
+                            ORG     $0900         NEED 65 BYTES ANYWHERE 
+0900 DE 20          BINARY  LDX     BASIC 
+0902 DF C8                  STX     LO 
+0904 96 24                  LDA A   MEND 
+0906 97 CA                  STA A   HI 
+0908 90 C8          SLICE   SUB A   LO 
+090A 44                     LSR A   
+090B 27 2D                  BEQ     DONE 
+090D 9B C8                  ADD A   LO 
+090F 97 2C                  STA A   BP 
+0911 7F 002D                CLR     BP+l 
+0914 DE 2C                  LDX     BP 
+0916 86 0D                  LDA A   #13 
+0918 08                     INX 
+0919 Al 00                  CMP A   X 
+091B 26 FB                  BNE     *-3 
+091D 08                     INX 
+091E 08                     INX 
+091F 08                     INX 
+0920 Al 00                  CMP A   X 
+0922 26 FB                  BNE     *-3 
+0924 08                     INX 
+0925 96 BD                  LDA A   TEMP+l 
+0927 A0 01                  SUB A   1,X 
+0929 96 BC                  LDA A   TEMP 
+092B A2 00                  SBC A   X 
+092D 96 2C                  LDA A   BP 
+092F 25 03                  BCS     TOOHI 
+0931 DF C8                  STX     LO 
+0933 8C                     SKIP    2 
+0934 DF CA          TOOHI   STX     HI 
+0936 96 CA                  LDA A   HI 
+0938 20 CE                  BRA     SLICE 
+093A DE C8          DONE    LDX     LO 
+093C DF 2C                  STX     BP 
+093E 7E 0529                JMP     FLINE 
+                            ORG     $0200          IF IN USER SPACE, 
+0200 CE 0950                LDX     #USER          MOVE IT OVER 
