@@ -2,31 +2,87 @@
   {
     "name": "Tic Tac Toe",
     "fileName": "TicTacToe.txt",
-    "input": "256"
+    "inputs": [
+      {
+        "name": "Quick start",
+        "lines": [
+          "256"
+        ]
+      }
+    ]
   },
   {
     "name": "Life",
     "fileName": "LifeTB.txt",
-    "input": ""
+    "inputs": [
+      {
+        "name": "Dr.Dobbs #1",
+        "lines": [
+          "11",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "0,0,1,1,1,1,1,1,1,2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "17"
+        ]
+      },
+      {
+        "name": "Blinker",
+        "lines": [
+          "5",
+          "2",
+          "2",
+          "0,1,1,1,2",
+          "2",
+          "2",
+          "100"
+        ]
+      },
+      {
+        "name": "Pulsar",
+        "lines": [
+          "15",
+          "2",
+          "0,0,0,1,1,1,0,0,0,1,1,1,2",
+          "2",
+          "0,1,0,0,0,0,1,0,1,0,0,0,0,1,2",
+          "0,1,0,0,0,0,1,0,1,0,0,0,0,1,2",
+          "0,1,0,0,0,0,1,0,1,0,0,0,0,1,2",
+          "0,0,0,1,1,1,0,0,0,1,1,1,2",
+          "2",
+          "0,0,0,1,1,1,0,0,0,1,1,1,2",
+          "0,1,0,0,0,0,1,0,1,0,0,0,0,1,2",
+          "0,1,0,0,0,0,1,0,1,0,0,0,0,1,2",
+          "0,1,0,0,0,0,1,0,1,0,0,0,0,1,2",
+          "2",
+          "0,0,0,1,1,1,0,0,0,1,1,1,2",
+          "2",
+          "99"
+        ]
+      }
+    ]
   },
   {
     "name": "Tiny Adventure",
-    "fileName": "Advent.txt",
-    "input": ""
+    "fileName": "Advent.txt"
   },
   {
     "name": "The Kingdom of Euphoria",
-    "fileName": "Euphoria.txt",
-    "input": ""
+    "fileName": "Euphoria.txt"
   },
   {
     "name": "Random numbers",
-    "fileName": "random.txt",
-    "input": ""
+    "fileName": "random.txt"
   },
   {
     "name": "Hex memory dump",
-    "fileName": "HexDump.txt",
-    "input": ""
+    "fileName": "HexDump.txt"
   }  
 ]

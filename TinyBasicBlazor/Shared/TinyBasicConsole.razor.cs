@@ -11,11 +11,10 @@ using System.Threading.Tasks;
 
 namespace TinyBasicBlazor.Shared
 {
-    // TODO: delete
     // TODO: focus
     // TODO: css
     // TODO: (console) clear button
-    // TODO: break button
+    // TODO: automatic textbox clear
     // TODO: debug
 
     public partial class TinyBasicConsole
@@ -49,7 +48,12 @@ namespace TinyBasicBlazor.Shared
         {
             public const char Null = '\0';
             public const char BackSpace = '\b';
+            // Used to clear console output
             public const char FormFeed = (char)12;
+            // Used to force input echo
+            public const char DeviceControl2 = (char)18;
+            // Used to force input echo
+            public const char DeviceControl4 = (char)20;
         }
 
         /// <summary>
@@ -83,6 +87,8 @@ namespace TinyBasicBlazor.Shared
         /// </summary>
         public string Text { get; set; }
 
+        public bool echo;
+
         private TinyBasic tinyBasic;
 
         private int lastReturnCode;
@@ -97,7 +103,7 @@ namespace TinyBasicBlazor.Shared
         private void OnKeyDownHandler(KeyboardEventArgs args)
         {
             // Console.WriteLine($"KeyboardEventArgs key: {args.Key} code: {args.Code} type: {args.Type} meta: {args.MetaKey} shift: {args.ShiftKey} ctrl: {args.CtrlKey} repeat: {args.Repeat}");
-            
+
             if (args.Code.Contains("Backspace"))
             {
                 lock (inputBufferSync)
@@ -152,11 +158,12 @@ namespace TinyBasicBlazor.Shared
             this.inputBuffer = new Queue<char>();
             this.mustRefreshOutput = false;
 
+            this.echo = false;
+
             this.TextAreaId = $"{this.Id}_TextArea";
             this.Text = "Welcome to TINY BASIC!\n";
 
             this.lastReturnCode = 0;
-
             this.tinyBasic.StartTinyBasic(null);
 
             this.timer = new Timer((state) =>
@@ -189,7 +196,7 @@ namespace TinyBasicBlazor.Shared
             }, null, 0, 100);
         }
 
-        public void TypeAndRun(string program, string input)
+        public void TypeAndRun(string program, string[] input)
         {
             Break();
 
@@ -200,13 +207,37 @@ namespace TinyBasicBlazor.Shared
 
             inputStringBuilder.AppendLine();
             inputStringBuilder.AppendLine("CLEAR");
-            inputStringBuilder.AppendLine(program);
+            // TODO: reset all vars? cold/warm start?
+            for (var v = 'A'; v <= 'Z'; v++)
+            {
+                inputStringBuilder.AppendLine($"LET {v}=0");
+            }
+            inputStringBuilder.AppendLine(program.Trim('\r', '\n'));
             inputStringBuilder.Append(ControlCharacter.FormFeed);
             inputStringBuilder.AppendLine("RUN");
-            if (!string.IsNullOrEmpty(input))
+            if (input != null && input.Length > 0)
             {
-                //inputStringBuilder.AppendLine("256"); // TODO: TicTacToe
-                inputStringBuilder.AppendLine(input);
+                //inputStringBuilder.AppendLine(ControlCharacter.DeviceControl2.ToString());
+                for (int i=0; i < input.Length; i++)
+                {
+                    string inputLine = input[i];
+
+                    if (!string.IsNullOrEmpty(inputLine))
+                    {
+                        if (i == 0)
+                        {
+                            inputLine = $"{ControlCharacter.DeviceControl2}{inputLine}";
+                        }
+
+                        if (i == input.Length - 1)
+                        {
+                            inputLine = $"{inputLine}{ControlCharacter.DeviceControl4}";
+                        }
+
+                        inputStringBuilder.AppendLine(inputLine);
+                    }
+                }
+                //inputStringBuilder.AppendLine(ControlCharacter.DeviceControl4.ToString());
             }
 
             EnqueueInput(inputStringBuilder.ToString());
@@ -243,7 +274,7 @@ namespace TinyBasicBlazor.Shared
         {
             lock (inputBufferSync)
             {
-                while(true)
+                while (true)
                 {
                     if (inputBuffer.Any())
                     {
@@ -253,8 +284,18 @@ namespace TinyBasicBlazor.Shared
                             case ControlCharacter.FormFeed:
                                 this.Text = string.Empty;
                                 break;
+                            case ControlCharacter.DeviceControl2:
+                                this.echo = true;
+                                break;
+                            case ControlCharacter.DeviceControl4:
+                                this.echo = false;
+                                break;
 
                             default:
+                                if (this.echo)
+                                {
+                                    this.Text += c;
+                                }
                                 return c;
                         }
                     }

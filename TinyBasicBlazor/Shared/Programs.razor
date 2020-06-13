@@ -13,8 +13,20 @@
                 @foreach (var program in programs)
                 {
                     <li>
-                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => Load(GetProgramFilePath(program.FileName), program.Input)" @onclick:preventDefault>@program.Name</a>
+                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => Load(GetProgramFilePath(program.FileName), null)" @onclick:preventDefault>@program.Name</a>
                         (<a href="@GetProgramFilePath(program.FileName)" target="_blank">Listing</a>)
+                        
+                        @if (program.Inputs != null && program.Inputs.Length > 0)
+                        {
+                            <ul>
+                                @foreach(var input in program.Inputs)
+                                {
+                                    <li>
+                                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => Load(GetProgramFilePath(program.FileName), input.Lines)" @onclick:preventDefault>@input.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
                     </li>
                 }
             </ul>
@@ -26,11 +38,18 @@
 
     public class Program
     {
+        public class Input
+        {
+            public string Name { get; set; }
+
+            public string[] Lines { get; set; }
+        }
+
         public string Name { get; set; }
 
         public string FileName { get; set; }
 
-        public string Input { get; set; }
+        public Input[] Inputs { get; set; }
     }
 
     [Parameter]
@@ -48,7 +67,7 @@
         return $"programs/{fileName}";
     }
 
-    private async void Load(string programFilePath, string programInput)
+    private async void Load(string programFilePath, string[] programInput)
     {
         var program = await HttpClient.GetStringAsync(programFilePath);
         tinyBasicConsole.TypeAndRun(program, programInput);
