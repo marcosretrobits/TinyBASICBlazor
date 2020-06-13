@@ -2,6 +2,7 @@
   {
     "name": "Tic Tac Toe",
     "fileName": "TicTacToe.txt",
+    "summary": "Tic-Tac-Toe game from HBCC Newsletter",
     "inputs": [
       {
         "name": "Quick start",
@@ -14,6 +15,7 @@
   {
     "name": "Life",
     "fileName": "LifeTB.txt",
+    "summary": "John Conway's Life adapted for TinyBasic",
     "inputs": [
       {
         "name": "Dr.Dobbs #1",
@@ -71,18 +73,22 @@
   },
   {
     "name": "Tiny Adventure",
+    "summary": "TINY BASIC ADVENTURE GAME COPYRIGHT (C) 1981 T.PITTMAN",
     "fileName": "Advent.txt"
   },
   {
     "name": "The Kingdom of Euphoria",
+    "summary": "TinyBasic program inspired by a promotional game popular a long time ago",
     "fileName": "Euphoria.txt"
   },
   {
     "name": "Random numbers",
+    "summary": "RANDOM NUMBERS example from Appendix E of TinyBasic User Manual by Tom Pittman",
     "fileName": "random.txt"
   },
   {
     "name": "Hex memory dump",
+    "summary": "HEX MEMORY DUMP example from Appendix E of TinyBasic User Manual by Tom Pittman",
     "fileName": "HexDump.txt"
   }  
 ]

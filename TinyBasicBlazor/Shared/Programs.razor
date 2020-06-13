@@ -8,12 +8,12 @@
         }
         else
         {
-            <h6>Load program:</h6>
+            <h6>Load sample program:</h6>
             <ul>
                 @foreach (var program in programs)
                 {
                     <li>
-                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => Load(GetProgramFilePath(program.FileName), null)" @onclick:preventDefault>@program.Name</a>
+                        <a href="@GetProgramFilePath(program.FileName)" title="@program.Summary" @onclick="e => Load(GetProgramFilePath(program.FileName), null)" @onclick:preventDefault>@program.Name</a>
                         (<a href="@GetProgramFilePath(program.FileName)" target="_blank">Listing</a>)
                         
                         @if (program.Inputs != null && program.Inputs.Length > 0)
@@ -48,6 +48,8 @@
         public string Name { get; set; }
 
         public string FileName { get; set; }
+
+        public string Summary { get; set; }
 
         public Input[] Inputs { get; set; }
     }
