@@ -18,7 +18,7 @@
     "summary": "John Conway's Life adapted for TinyBasic",
     "inputs": [
       {
-        "name": "Dr.Dobbs #1",
+        "name": "Dr.Dobbs Journal #1 sample",
         "lines": [
           "11",
           "2",
@@ -73,12 +73,12 @@
   },
   {
     "name": "Tiny Adventure",
-    "summary": "TINY BASIC ADVENTURE GAME COPYRIGHT (C) 1981 T.PITTMAN",
+    "summary": "Adventure game from The First Book of Tiny BASIC Programs (C) 1981 T.PITTMAN",
     "fileName": "Advent.txt"
   },
   {
     "name": "The Kingdom of Euphoria",
-    "summary": "TinyBasic program inspired by a promotional game popular a long time ago",
+    "summary": "Game from The First Book of Tiny BASIC Programs (C) 1981 T.PITTMAN",
     "fileName": "Euphoria.txt"
   },
   {

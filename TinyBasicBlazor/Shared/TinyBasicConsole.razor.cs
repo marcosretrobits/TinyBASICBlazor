@@ -50,9 +50,9 @@ namespace TinyBasicBlazor.Shared
             public const char BackSpace = '\b';
             // Used to clear console output
             public const char FormFeed = (char)12;
-            // Used to force input echo
+            // Used to enable input echo
             public const char DeviceControl2 = (char)18;
-            // Used to force input echo
+            // Used to disable input echo
             public const char DeviceControl4 = (char)20;
         }
 
@@ -240,13 +240,13 @@ namespace TinyBasicBlazor.Shared
                 //inputStringBuilder.AppendLine(ControlCharacter.DeviceControl4.ToString());
             }
 
-            EnqueueInput(inputStringBuilder.ToString());
+            SetInput(inputStringBuilder.ToString());
         }
 
         public void Break()
         {
             tinyBasic.setBroken(true);
-            EnqueueInput('\n');
+            SetInput("\n");
         }
 
         public void EnqueueInput(char c)
@@ -257,7 +257,7 @@ namespace TinyBasicBlazor.Shared
             }
         }
 
-        public void EnqueueInput(string s)
+        public void SetInput(string s)
         {
             lock (inputBufferSync)
             {

@@ -9,3 +9,5 @@ References:
 	Tom Pittman [http://www.ittybittycomputers.com/] 's Tiny Basic [http://www.ittybittycomputers.com/IttyBitty/TinyBasic/index.htm] page
 	Mohan Embar [http://www.thisiscool.com/] 's port of Tom Pittmans's TinyBasic C rewrite to Java, C# and Flex/Actionscript [http://www.thisiscool.com/tinybasic.htm]
 	Steven Levy [https://stevenlevy.com] 's Hackers: Heroes of the Computer Revolution (chapters 1 and 2 available here [http://www.gutenberg.org/ebooks/729])
+	http://www.retrotechnology.com/memship/Son_of_TFBOTBAS.HTM
+	
