@@ -82,6 +82,11 @@
     "fileName": "Euphoria.txt"
   },
   {
+    "name": "FLASHCARD",
+    "summary": "FLASHCARD - A Math Drill COPYRIGHT (C) 1981 T.PITTMAN",
+    "fileName": "TFlash.txt"
+  },
+  {
     "name": "Random numbers",
     "summary": "RANDOM NUMBERS example from Appendix E of TinyBasic User Manual by Tom Pittman",
     "fileName": "random.txt"

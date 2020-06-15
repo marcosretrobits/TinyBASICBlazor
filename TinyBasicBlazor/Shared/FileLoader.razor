@@ -1,0 +1,28 @@
+﻿@using BlazorInputFile
+
+<div class="content px-1">
+    <h6>Load file:</h6>
+    <InputFile OnChange="HandleFileSelected" />
+</div>
+
+@code {
+
+    [Parameter]
+    public TinyBasicConsole tinyBasicConsole { get; set; }
+
+    IFileListEntry file;
+
+    async Task HandleFileSelected(IFileListEntry[] files)
+    {
+        file = files.FirstOrDefault();
+
+        string fileContent = null;
+
+        using (var reader = new System.IO.StreamReader(file.Data))
+        {
+            fileContent = await reader.ReadToEndAsync();
+        }
+
+        tinyBasicConsole.TypeAndRun(fileContent, null);
+    }
+}
