@@ -1,5 +1,6 @@
 ﻿[
   {
+    "id": "TicTacToe",
     "name": "Tic Tac Toe",
     "fileName": "TicTacToe.txt",
     "summary": "Tic-Tac-Toe game from HBCC Newsletter",
@@ -13,6 +14,7 @@
     ]
   },
   {
+    "id": "Life",
     "name": "Life",
     "fileName": "LifeTB.txt",
     "summary": "John Conway's Life adapted for TinyBasic",
@@ -72,28 +74,33 @@
     ]
   },
   {
+    "id": "Adventure",
     "name": "Tiny Adventure",
     "summary": "Adventure game from The First Book of Tiny BASIC Programs (C) 1981 T.PITTMAN",
     "fileName": "Advent.txt"
   },
   {
+    "id": "Euphoria",
     "name": "The Kingdom of Euphoria",
     "summary": "Game from The First Book of Tiny BASIC Programs (C) 1981 T.PITTMAN",
     "fileName": "Euphoria.txt"
   },
   {
+    "id": "FlashCard",
     "name": "FLASHCARD",
     "summary": "FLASHCARD - A Math Drill COPYRIGHT (C) 1981 T.PITTMAN",
     "fileName": "TFlash.txt"
   },
   {
+    "id": "Random",
     "name": "Random numbers",
     "summary": "RANDOM NUMBERS example from Appendix E of TinyBasic User Manual by Tom Pittman",
     "fileName": "random.txt"
   },
   {
+    "id": "HexDump",
     "name": "Hex memory dump",
     "summary": "HEX MEMORY DUMP example from Appendix E of TinyBasic User Manual by Tom Pittman",
     "fileName": "HexDump.txt"
-  }  
+  }
 ]

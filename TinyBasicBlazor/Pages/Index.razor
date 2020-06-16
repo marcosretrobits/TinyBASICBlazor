@@ -10,8 +10,8 @@
     </div>
 
     <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-        <ProgramsLoader tinyBasicConsole="tinyBasicConsole"/>
-        <FileLoader tinyBasicConsole="tinyBasicConsole"/>
+        <ProgramsLoader Title="Load sample program:" TinyBasicConsole="TinyBasicConsole" @ref="ProgramsLoader" />
+        <FileLoader Title="Load file:" TinyBasicConsole="TinyBasicConsole" />
     </div>
 
 </div>
@@ -25,7 +25,7 @@
 
         <h1>10 PRINT "Hello!"</h1>
         <p>
-            Welcome to 
+            Welcome to
             <a href="https://github.com/marcosretrobits/TinyBasicBlazor">TinyBasicBlazor</a>, an experimental interactive
             <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1">Blazor</a>
             <a href="https://webassembly.org/">WebAssembly</a>
@@ -40,7 +40,7 @@
             <a href="http://www.ittybittycomputers.com/IttyBitty/TinyBasic/TinyBasic.c">C rewrite</a>.
         </p>
 
-        <TinyBasicConsole Id="tinyBasicConsole" Rows="24" Cols="80" @ref="tinyBasicConsole" />
+        <TinyBasicConsole Id="tinyBasicConsole" Rows="24" Cols="80" @ref="TinyBasicConsole" />
 
         <div class="alert alert-secondary mt-4" role="alert">
             <span class="text-nowrap">
@@ -53,7 +53,12 @@
 
 @code {
 
-    TinyBasicConsole tinyBasicConsole;
+    [Parameter]
+    public string ProgramId { get; set; }
+
+    public TinyBasicConsole TinyBasicConsole { get; set; }
+
+    public ProgramsLoader ProgramsLoader { get; set; }
 
     private bool collapseNavMenu = true;
 
@@ -63,4 +68,5 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
 }

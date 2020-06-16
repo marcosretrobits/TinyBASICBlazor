@@ -8,12 +8,12 @@
         }
         else
         {
-            <h6>Load sample program:</h6>
+            <h6>@Title</h6>
             <ul>
                 @foreach (var program in programs)
                 {
                     <li>
-                        <a href="@GetProgramFilePath(program.FileName)" title="@program.Summary" @onclick="e => Load(GetProgramFilePath(program.FileName), null)" @onclick:preventDefault>@program.Name</a>
+                        <a href="@GetProgramFilePath(program.FileName)" title="@program.Summary" @onclick="e => LoadNRun(GetProgramFilePath(program.FileName), null)" @onclick:preventDefault>@program.Name</a>
                         (<a href="@GetProgramFilePath(program.FileName)" target="_blank">Listing</a>)
                         
                         @if (program.Inputs != null && program.Inputs.Length > 0)
@@ -22,7 +22,7 @@
                                 @foreach(var input in program.Inputs)
                                 {
                                     <li>
-                                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => Load(GetProgramFilePath(program.FileName), input.Lines)" @onclick:preventDefault>@input.Name</a>
+                                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => LoadNRun(GetProgramFilePath(program.FileName), input.Lines)" @onclick:preventDefault>@input.Name</a>
                                     </li>
                                 }
                             </ul>
@@ -45,6 +45,8 @@
             public string[] Lines { get; set; }
         }
 
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public string FileName { get; set; }
@@ -55,7 +57,10 @@
     }
 
     [Parameter]
-    public TinyBasicConsole tinyBasicConsole { get; set; }
+    public string Title { get; set; }
+
+    [Parameter]
+    public TinyBasicConsole TinyBasicConsole { get; set; }
 
     private Program[] programs;
 
@@ -69,10 +74,9 @@
         return $"programs/{fileName}";
     }
 
-    private async void Load(string programFilePath, string[] programInput)
+    private async Task LoadNRun(string programFilePath, string[] programInput)
     {
-        var program = await HttpClient.GetStringAsync(programFilePath);
-        tinyBasicConsole.TypeAndRun(program, programInput);
+        var programContent = await HttpClient.GetStringAsync(programFilePath);
+        TinyBasicConsole.TypeAndRun(programContent, programInput);
     }
-
 }
