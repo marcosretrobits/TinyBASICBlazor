@@ -1,4 +1,4 @@
-﻿@inject HttpClient HttpClient
+﻿@inject ProgramsService ProgramsService
 
     <div class="content px-1">
 
@@ -12,22 +12,27 @@
             <ul>
                 @foreach (var program in programs)
                 {
-                    <li>
-                        <a href="@GetProgramFilePath(program.FileName)" title="@program.Summary" @onclick="e => LoadNRun(GetProgramFilePath(program.FileName), null)" @onclick:preventDefault>@program.Name</a>
-                        (<a href="@GetProgramFilePath(program.FileName)" target="_blank">Listing</a>)
-                        
-                        @if (program.Inputs != null && program.Inputs.Length > 0)
-                        {
-                            <ul>
-                                @foreach(var input in program.Inputs)
-                                {
-                                    <li>
-                                        <a href="@GetProgramFilePath(program.FileName)" @onclick="e => LoadNRun(GetProgramFilePath(program.FileName), input.Lines)" @onclick:preventDefault>@input.Name</a>
-                                    </li>
-                                }
-                            </ul>
-                        }
-                    </li>
+                <li>
+
+                    @{
+                        string programFilePath = ProgramsService.GetProgramFilePath(program.Id);
+                    }
+
+                    <a href="@programFilePath" title="@program.Summary" @onclick="e => LoadNRun(program.Id, null)" @onclick:preventDefault>@program.Name</a>
+                    (<a href="@programFilePath" target="_blank">Listing</a>)
+
+                    @if (program.Inputs != null && program.Inputs.Length > 0)
+                    {
+                        <ul>
+                            @foreach (var input in program.Inputs)
+                            {
+                                <li>
+                                    <a href="@programFilePath" @onclick="e => LoadNRun(program.Id, input.Lines)" @onclick:preventDefault>@input.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
                 }
             </ul>
         }
@@ -35,26 +40,6 @@
     </div>
 
 @code {
-
-    public class Program
-    {
-        public class Input
-        {
-            public string Name { get; set; }
-
-            public string[] Lines { get; set; }
-        }
-
-        public string Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string FileName { get; set; }
-
-        public string Summary { get; set; }
-
-        public Input[] Inputs { get; set; }
-    }
 
     [Parameter]
     public string Title { get; set; }
@@ -64,19 +49,14 @@
 
     private Program[] programs;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        programs = await HttpClient.GetFromJsonAsync<Program[]>(GetProgramFilePath("programs.json"));
+        programs = ProgramsService.Programs;
     }
 
-    private string GetProgramFilePath(string fileName)
+    private async Task LoadNRun(string programId, string[] programInput)
     {
-        return $"programs/{fileName}";
-    }
-
-    private async Task LoadNRun(string programFilePath, string[] programInput)
-    {
-        var programContent = await HttpClient.GetStringAsync(programFilePath);
+        var programContent = await ProgramsService.Load(programId);
         TinyBasicConsole.TypeAndRun(programContent, programInput);
     }
 }

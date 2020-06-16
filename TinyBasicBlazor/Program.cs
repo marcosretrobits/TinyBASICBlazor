@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TinyBasicBlazor.Shared;
 
 namespace TinyBasicBlazor
 {
@@ -18,8 +19,14 @@ namespace TinyBasicBlazor
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddSingleton<ProgramsService>();
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+
+            var programsService = host.Services.GetRequiredService<ProgramsService>();
+            await programsService.InitializeProgramsAsync();
+
+            await host.RunAsync();
         }
     }
 }
