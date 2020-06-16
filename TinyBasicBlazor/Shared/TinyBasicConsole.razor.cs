@@ -139,10 +139,11 @@ namespace TinyBasicBlazor.Shared
         }
         */
 
-        private void UpdateTextArea()
+        private async Task UpdateTextArea()
         {
             StateHasChanged();
-            JSRuntime.InvokeVoidAsync("ScrollTextArea", $"{Id}_TextArea");
+            await JSRuntime.InvokeVoidAsync("ScrollTextArea", $"{Id}_TextArea");
+            await SetFocus();
         }
 
         public TinyBasicConsole()
@@ -160,11 +161,11 @@ namespace TinyBasicBlazor.Shared
             this.lastReturnCode = 0;
             this.tinyBasic.StartTinyBasic(null);
 
-            this.timer = new Timer((state) =>
+            this.timer = new Timer(async (state) =>
             {
                 if (this.mustRefreshOutput)
                 {
-                    UpdateTextArea();
+                    await UpdateTextArea();
                     this.mustRefreshOutput = false;
                 }
 
@@ -195,7 +196,7 @@ namespace TinyBasicBlazor.Shared
             await Break();
 
             this.Text = "Loading...\n";
-            UpdateTextArea();
+            await UpdateTextArea();
 
             var inputStringBuilder = new StringBuilder();
 
