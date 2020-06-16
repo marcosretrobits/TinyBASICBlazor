@@ -1,4 +1,7 @@
 ﻿@page "/"
+@page "/{programId}"
+
+@inject ProgramsService ProgramsService
 
 <div class="sidebar">
 
@@ -10,7 +13,7 @@
     </div>
 
     <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-        <ProgramsLoader Title="Load sample program:" TinyBasicConsole="TinyBasicConsole" @ref="ProgramsLoader" />
+        <ProgramsList Title="Load sample program:" TinyBasicConsole="TinyBasicConsole" />
         <FileLoader Title="Load file:" TinyBasicConsole="TinyBasicConsole" />
     </div>
 
@@ -58,8 +61,6 @@
 
     public TinyBasicConsole TinyBasicConsole { get; set; }
 
-    public ProgramsLoader ProgramsLoader { get; set; }
-
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -69,4 +70,19 @@
         collapseNavMenu = !collapseNavMenu;
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (!string.IsNullOrEmpty(ProgramId))
+            {
+                string program = await ProgramsService.Load(ProgramId);
+
+                if (!string.IsNullOrEmpty(program))
+                {
+                    await TinyBasicConsole.TypeAndRun(program, null);
+                }
+            }
+        }
+    }
 }

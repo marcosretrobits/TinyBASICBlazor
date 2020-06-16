@@ -57,6 +57,6 @@
     private async Task LoadNRun(string programId, string[] programInput)
     {
         var programContent = await ProgramsService.Load(programId);
-        TinyBasicConsole.TypeAndRun(programContent, programInput);
+        await TinyBasicConsole.TypeAndRun(programContent, programInput);
     }
 }

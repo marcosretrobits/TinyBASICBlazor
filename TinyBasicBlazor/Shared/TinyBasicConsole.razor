@@ -1,5 +1,10 @@
 ﻿@inject IJSRuntime JSRuntime;
 
-<textarea id="@TextAreaId" class="tinyBasicTextArea" readonly="readonly" rows="@Rows" cols="@Cols" @onkeypress="(e => OnKeyPressHandler(e))" @onkeydown="(e => OnKeyDownHandler(e))">@Text</textarea>
+@{
+    var textAreaId = $"{Id}_TextArea";
+}
+<textarea id="@textAreaId" class="tinyBasicTextArea" autofocus readonly="readonly" rows="@Rows" cols="@Cols" @onkeypress="(e => OnKeyPressHandler(e))" @onkeydown="(e => OnKeyDownHandler(e))">@Text</textarea>
+
 <br />
+
 <button class="btn btn-primary" @onclick='e => this.Break()'>Break</button>

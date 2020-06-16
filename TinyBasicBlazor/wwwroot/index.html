@@ -10,7 +10,7 @@
     <link href="css/app.css" rel="stylesheet" />
 </head>
 
-<body>
+<body">
     <app>Loading...</app>
 
     <div id="blazor-error-ui">
@@ -25,6 +25,11 @@
             var textarea = document.getElementById(textAreaId);
             textarea.scrollTop = textarea.scrollHeight;
         }
+        function SetFocus(elementId) {
+            var element = document.getElementById(elementId);
+            element.focus();
+        }
+        
     </script>
 </body>
 

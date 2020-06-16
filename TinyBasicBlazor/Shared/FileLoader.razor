@@ -26,6 +26,6 @@
             fileContent = await reader.ReadToEndAsync();
         }
 
-        TinyBasicConsole.TypeAndRun(fileContent, null);
+        await TinyBasicConsole.TypeAndRun(fileContent, null);
     }
 }

@@ -78,11 +78,6 @@ namespace TinyBasicBlazor.Shared
         public int Cols { get; set; }
 
         /// <summary>
-        /// TextArea Id
-        /// </summary>
-        public string TextAreaId { get; set; }
-
-        /// <summary>
         /// TextArea content
         /// </summary>
         public string Text { get; set; }
@@ -147,7 +142,7 @@ namespace TinyBasicBlazor.Shared
         private void UpdateTextArea()
         {
             StateHasChanged();
-            JSRuntime.InvokeVoidAsync("ScrollTextArea", TextAreaId);
+            JSRuntime.InvokeVoidAsync("ScrollTextArea", $"{Id}_TextArea");
         }
 
         public TinyBasicConsole()
@@ -160,7 +155,6 @@ namespace TinyBasicBlazor.Shared
 
             this.echo = false;
 
-            this.TextAreaId = $"{this.Id}_TextArea";
             this.Text = "Welcome to TINY BASIC!\n";
 
             this.lastReturnCode = 0;
@@ -196,9 +190,9 @@ namespace TinyBasicBlazor.Shared
             }, null, 0, 100);
         }
 
-        public void TypeAndRun(string program, string[] input)
+        public async Task TypeAndRun(string program, string[] input)
         {
-            Break();
+            await Break();
 
             this.Text = "Loading...\n";
             UpdateTextArea();
@@ -241,15 +235,22 @@ namespace TinyBasicBlazor.Shared
             }
 
             SetInput(inputStringBuilder.ToString());
+            await SetFocus();
         }
 
-        public void Break()
+        public async Task SetFocus()
+        {
+            await JSRuntime.InvokeVoidAsync("SetFocus", $"{Id}_TextArea");
+        }
+
+        private async Task Break()
         {
             tinyBasic.setBroken(true);
             SetInput("\n");
+            await SetFocus();
         }
 
-        public void EnqueueInput(char c)
+        private void EnqueueInput(char c)
         {
             lock (inputBufferSync)
             {
@@ -257,7 +258,7 @@ namespace TinyBasicBlazor.Shared
             }
         }
 
-        public void SetInput(string s)
+        private void SetInput(string s)
         {
             lock (inputBufferSync)
             {
