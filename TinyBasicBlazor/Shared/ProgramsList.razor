@@ -27,7 +27,7 @@
                             @foreach (var input in program.Inputs)
                             {
                                 <li>
-                                    <a href="@programFilePath" @onclick="e => LoadNRun(program.Id, input.Lines)" @onclick:preventDefault>@input.Name</a>
+                                    <a href="@programFilePath" title="@input.Summary" @onclick="e => LoadNRun(program.Id, input.Lines)" @onclick:preventDefault>@input.Name</a>
                                 </li>
                             }
                         </ul>

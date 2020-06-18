@@ -7,6 +7,7 @@
     "inputs": [
       {
         "name": "Quick start",
+        "summary": "Automatically input cold start address, so that the game can run immediately",
         "lines": [
           "256"
         ]
@@ -20,7 +21,8 @@
     "summary": "John Conway's Life adapted for TinyBasic",
     "inputs": [
       {
-        "name": "Dr.Dobbs Journal #1 sample",
+        "name": "Dr.Dobbs Journal #1",
+        "summary": "Automatically input data for generating the pattern published in Dr.Dobbs Journal #1",
         "lines": [
           "11",
           "2",
@@ -39,6 +41,7 @@
       },
       {
         "name": "Blinker",
+        "summary": "Automatically input data for generating the Blinker pattern",
         "lines": [
           "5",
           "2",
@@ -50,7 +53,26 @@
         ]
       },
       {
+        "name": "Glider",
+        "summary": "Automatically input data for generating the Glider pattern",
+        "lines": [
+          "10",
+          "0,1,2",
+          "0,0,1,2",
+          "1,1,1,2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "50"
+        ]
+      },
+      {
         "name": "Pulsar",
+        "summary": "Automatically input data for generating the Pulsar pattern",
         "lines": [
           "15",
           "2",

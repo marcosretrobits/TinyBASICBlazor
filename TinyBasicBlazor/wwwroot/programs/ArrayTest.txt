@@ -1,0 +1,11 @@
+1 rem array test (see tic tac toe)
+10 let p=256+24
+20 let g=256+20
+30 let i=0
+40 let i=usr(p,i,i)*0+i+1
+50 if i<16 goto40
+100 let i=0
+110 print usr(g,i)
+120 let i=i+1
+130 if i<16 goto 110
+1000 end

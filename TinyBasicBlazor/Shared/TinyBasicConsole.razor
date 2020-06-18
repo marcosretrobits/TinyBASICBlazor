@@ -3,8 +3,9 @@
 @{
     var textAreaId = $"{Id}_TextArea";
 }
+<div>
 <textarea id="@textAreaId" class="tinyBasicTextArea" autofocus readonly="readonly" rows="@Rows" cols="@Cols" @onkeypress="(e => OnKeyPressHandler(e))" @onkeydown="(e => OnKeyDownHandler(e))">@Text</textarea>
-
-<br />
-
-<button class="btn btn-primary" @onclick='e => this.Break()'>Break</button>
+    <br />
+    <button class="btn btn-primary" @onclick='e => this.Break()'>Break</button>
+    <button class="btn btn-primary" @onclick='e => this.Clear()'>Clear</button>'
+</div>

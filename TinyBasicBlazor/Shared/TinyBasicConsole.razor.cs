@@ -251,6 +251,12 @@ namespace TinyBasicBlazor.Shared
             await SetFocus();
         }
 
+        private void Clear()
+        {
+            this.Text = string.Empty;
+            mustRefreshOutput = true;
+        }
+
         private void EnqueueInput(char c)
         {
             lock (inputBufferSync)
