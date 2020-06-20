@@ -196,7 +196,7 @@ namespace TinyBasicBlazor.Shared
 
         public async Task TypeAndRun(string program, string[] input)
         {
-            await Break();
+            Break();
 
             this.Text = "Loading...\n";
             await UpdateTextArea();
@@ -246,7 +246,7 @@ namespace TinyBasicBlazor.Shared
             await JSRuntime.InvokeVoidAsync("SetFocus", $"{Id}_TextArea");
         }
 
-        private async Task Break()
+        private void Break()
         {
             tinyBasic.setBroken(true);
             SetInput("\n");
