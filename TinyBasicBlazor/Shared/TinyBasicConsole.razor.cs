@@ -11,12 +11,11 @@ using System.Threading.Tasks;
 
 namespace TinyBasicBlazor.Shared
 {
-    // TODO: focus
-    // TODO: css
-    // TODO: (console) clear button
-    // TODO: automatic textbox clear
     // TODO: debug
 
+    /// <summary>
+    /// TinyBasic console control.
+    /// </summary>
     public partial class TinyBasicConsole
     {
         private class TinyBasicConsoleIO : IConsoleIO
@@ -165,6 +164,10 @@ namespace TinyBasicBlazor.Shared
             {
                 if (this.mustRefreshOutput)
                 {
+                    if (this.Text.Length >= 19200)
+                    {
+                        this.Text = this.Text.Substring(this.Text.Length - 200, 200);
+                    }
                     await UpdateTextArea();
                     this.mustRefreshOutput = false;
                 }
@@ -236,7 +239,6 @@ namespace TinyBasicBlazor.Shared
             }
 
             SetInput(inputStringBuilder.ToString());
-            await SetFocus();
         }
 
         public async Task SetFocus()
@@ -248,7 +250,6 @@ namespace TinyBasicBlazor.Shared
         {
             tinyBasic.setBroken(true);
             SetInput("\n");
-            await SetFocus();
         }
 
         private void Clear()
