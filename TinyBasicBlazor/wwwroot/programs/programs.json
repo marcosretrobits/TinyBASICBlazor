@@ -1,5 +1,23 @@
 ﻿[
   {
+    "id": "MaN1cPuzzle",
+    "name": "MaN1c Puzzle",
+    "fileName": "MaN1cPuzzle.txt",
+    "summary": "M*N-1 Puzzle game by Marco's Retrobits",
+    "inputs": [
+      {
+        "name": "4x4 grid (15 tiles)",
+        "summary": "Play on a 4*4 grid with 15 tiles (Game of Fifteen)",
+        "lines": [
+          "256",
+          "4",
+          "4",
+          "500"
+        ]
+      }
+    ]
+  },
+  {
     "id": "TicTacToe",
     "name": "Tic Tac Toe",
     "fileName": "TicTacToe.txt",
