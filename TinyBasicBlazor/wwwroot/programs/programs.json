@@ -6,6 +6,7 @@
     "summary": "M*N-1 Puzzle game by Marco's Retrobits",
     "inputs": [
       {
+        "id": "15",
         "name": "4x4 grid (15 tiles)",
         "summary": "Play on a 4*4 grid with 15 tiles (Game of Fifteen)",
         "lines": [
@@ -24,6 +25,7 @@
     "summary": "Tic-Tac-Toe game from HBCC Newsletter",
     "inputs": [
       {
+        "id": "QuickStart",
         "name": "Quick start",
         "summary": "Automatically input cold start address, so that the game can run immediately",
         "lines": [
@@ -39,6 +41,7 @@
     "summary": "John Conway's Life adapted for TinyBasic",
     "inputs": [
       {
+        "id": "drdobbs",
         "name": "Dr.Dobbs Journal #1",
         "summary": "Automatically input data for generating the pattern published in Dr.Dobbs Journal #1",
         "lines": [
@@ -58,6 +61,7 @@
         ]
       },
       {
+        "id": "blinker",
         "name": "Blinker",
         "summary": "Automatically input data for generating the Blinker pattern",
         "lines": [
@@ -71,6 +75,7 @@
         ]
       },
       {
+        "id": "glider",
         "name": "Glider",
         "summary": "Automatically input data for generating the Glider pattern",
         "lines": [
@@ -89,6 +94,7 @@
         ]
       },
       {
+        "id": "pulsar",
         "name": "Pulsar",
         "summary": "Automatically input data for generating the Pulsar pattern",
         "lines": [

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace TinyBasicBlazor.Shared
 {
     // TODO: debug
+    // TODO: query string params: https://chrissainty.com/working-with-query-strings-in-blazor/
 
     /// <summary>
     /// TinyBasic console control.
@@ -205,7 +206,6 @@ namespace TinyBasicBlazor.Shared
 
             inputStringBuilder.AppendLine();
             inputStringBuilder.AppendLine("CLEAR");
-            // TODO: reset all vars? cold/warm start?
             for (var v = 'A'; v <= 'Z'; v++)
             {
                 inputStringBuilder.AppendLine($"LET {v}=0");

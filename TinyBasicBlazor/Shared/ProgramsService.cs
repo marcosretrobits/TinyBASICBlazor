@@ -10,7 +10,6 @@ namespace TinyBasicBlazor.Shared
     public class ProgramsService
     {
         private HttpClient httpClient;
-        private object semaphore = new object();
 
         private Program GetProgram(string programId)
         {
@@ -65,6 +64,24 @@ namespace TinyBasicBlazor.Shared
 
             var programContent = await this.httpClient.GetStringAsync(programFilePath);
             return programContent;
+        }
+
+        public string[] GetProgramInput(string programId, string inputId)
+        {
+            if (programId == null)
+                throw new ArgumentNullException(nameof(programId));
+            if (inputId == null)
+                throw new ArgumentNullException(nameof(inputId));
+
+            var program = GetProgram(programId);
+            if (program == null)
+                return null;
+
+            var input = program.Inputs.SingleOrDefault(x => x.Id.ToLower() == inputId.ToLower());
+            if (input == null)
+                return null;
+
+            return input.Lines;
         }
     }
 }

@@ -2,6 +2,7 @@
 @page "/{programId}"
 
 @inject ProgramsService ProgramsService
+@inject NavigationManager NavigationManager
 
 <div class="sidebar">
 
@@ -74,6 +75,7 @@
     {
         if (firstRender)
         {
+            // Check route parameter
             if (!string.IsNullOrEmpty(ProgramId))
             {
                 string program = await ProgramsService.Load(ProgramId);
@@ -82,6 +84,29 @@
                 {
                     await TinyBasicConsole.TypeAndRun(program, null);
                 }
+            }
+            else
+            {
+                // Query string parameters
+                var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+                // Get program
+                if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("p", out var programId) && !string.IsNullOrEmpty(programId))
+                {
+                    string program = await ProgramsService.Load(programId);
+                    string[] input = null;
+
+                    if (!string.IsNullOrEmpty(program))
+                    {
+                        // Get input
+                        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("i", out var inputId) && !string.IsNullOrEmpty(programId))
+                        {
+                            input = ProgramsService.GetProgramInput(programId, inputId);
+                        }
+
+                        await TinyBasicConsole.TypeAndRun(program, input);
+                    }
+                }
+
             }
         }
     }
