@@ -167,7 +167,7 @@ namespace TinyBasicBlazor.Shared
                 {
                     if (this.Text.Length >= 19200)
                     {
-                        this.Text = this.Text.Substring(this.Text.Length - 200, 200);
+                        this.Text = this.Text.Substring(this.Text.Length - 800, 800);
                     }
                     await UpdateTextArea();
                     this.mustRefreshOutput = false;
@@ -250,6 +250,7 @@ namespace TinyBasicBlazor.Shared
         {
             tinyBasic.setBroken(true);
             SetInput("\n");
+            this.mustRefreshOutput = true;
         }
 
         private void Clear()

@@ -8,11 +8,22 @@
       {
         "id": "15",
         "name": "4x4 grid (15 tiles)",
-        "summary": "Play on a 4*4 grid with 15 tiles (Game of Fifteen)",
+        "summary": "Play on a 4x4 grid with 15 tiles (Game of Fifteen)",
         "lines": [
           "256",
           "4",
           "4",
+          "500"
+        ]
+      },
+      {
+        "id": "24",
+        "name": "5x5 grid (24 tiles)",
+        "summary": "Play on a 5x5 grid with 24 tiles",
+        "lines": [
+          "256",
+          "5",
+          "5",
           "500"
         ]
       }
