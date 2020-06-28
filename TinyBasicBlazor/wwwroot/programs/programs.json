@@ -160,4 +160,10 @@
     "summary": "HEX MEMORY DUMP example from Appendix E of TinyBasic User Manual by Tom Pittman",
     "fileName": "HexDump.txt"
   }
+  {
+    "id": "Craps",
+    "name": "Game of Craps",
+    "summary": "Simulation of a game of Craps, adapted from Byron S. Gottfried's Programming With Basic, Example 6.20",
+    "fileName": "HexDump.txt"
+  }
 ]
