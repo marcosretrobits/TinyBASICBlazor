@@ -165,5 +165,11 @@
     "name": "Game of Craps",
     "summary": "Simulation of a game of Craps, adapted from Byron S. Gottfried's Programming With Basic, Example 6.20",
     "fileName": "Craps.txt"
+  },
+  {
+    "id": "ApplesPears",
+    "name": "Apples and pears",
+    "summary": "Brute force solution to a small mathematical problem",
+    "fileName": "ApplesPears.txt"
   }
 ]
