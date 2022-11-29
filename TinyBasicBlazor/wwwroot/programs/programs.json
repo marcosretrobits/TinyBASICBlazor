@@ -171,5 +171,11 @@
     "name": "Apples and pears",
     "summary": "Brute force solution to a small mathematical problem",
     "fileName": "ApplesPears.txt"
+  },
+  {
+    "id": "Fibonacci",
+    "name": "Fibonacci numbers",
+    "summary": "Generation of Fibonacci Numbers, adapted from Byron S. Gottfried's Programming With Basic, Example 4.18",
+    "fileName": "Fibonacci.txt"
   }
 ]
