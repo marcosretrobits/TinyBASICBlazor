@@ -177,5 +177,35 @@
     "name": "Fibonacci numbers",
     "summary": "Generation of Fibonacci Numbers, adapted from Byron S. Gottfried's Programming With Basic, Example 4.18",
     "fileName": "Fibonacci.txt"
+  },
+  {
+    "id": "DayOfWeek",
+    "name": "Day of the week",
+    "summary": "Tells the day of the week, given a date. From the ELF TinyBasic examples bundled with the Emma02 emulator",
+    "fileName": "DayOfTheWeek.txt",
+	"inputs": [
+      {
+        "id": "MyBirthDay",
+        "name": "My birth day",
+        "summary": "My birth day is...",
+        "lines": [
+          "1",
+		  "6",
+		  "1978"
+        ]
+      }
+    ]
+  }, 
+  {
+    "id": "Snoopy",
+    "name": "Snoopy",
+    "summary": "An ASCII Art 'picture' of Snoopy, also found in the '101 BASIC Computer Games' first book published by DEC in 1973",
+    "fileName": "Snoopy.txt"
+  },
+  {
+    "id": "ChristmasStar",
+    "name": "The Christmas Star",
+    "summary": "My Tiny BASIC entry to the Vintage Computing Christmas Challenge 2022",
+    "fileName": "ChristmasStar.txt"
   }
 ]
