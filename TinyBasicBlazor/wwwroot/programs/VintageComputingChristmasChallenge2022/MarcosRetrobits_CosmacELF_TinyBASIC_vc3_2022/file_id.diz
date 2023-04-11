@@ -1,0 +1,149 @@
+Tiny Christmas Star (Tiny BASIC)
+
+Author: Marco's Retrobits (Marco Varesio)
+Category: Christmas Challenge
+System:   Classic and modern systems running ITTY BITTY TinyBASIC and derivatives (e.g. Cosmac ELF, Netronics ELF II, TinyBASICBlazor)
+Language: Tiny BASIC
+Len source code: 203 bytes
+Len exe file:    N/A (only text program listing is provided)
+Len code only:   N/A (valid for assembler only; length of executable without BASIC stub)
+Instructions:
+  TinyBASICBlazor (for WebAssembly capable web browsers):
+    Go to https://retrobits.altervista.org/tinybasicblazor/, click the "Browse..." button on the bottom left, choose the "source.txt" file and enjoy!
+  Emma 02 emulator (Windows instructions - for other host systems should be similar):
+    Install the Emma 02 emulator and support files; select the "ELF" tab and "Cosmac ELF" in the combo box.
+    Then load the Netronics Tiny BASIC configuration from the menu: "File" -> "Configuration" -> "Load" -> "Netronics Tiny Basic" -> "Serial I/O" and then click the "Start" button.
+    The "Elf - VT 100" window will pop up. Wait a few seconds, then press the "Return" (or "Enter") key twice.
+    Open the "source.txt" file with a text editor, select all text and copy it (CTRL+C).
+    Go to the "Elf - VT 100" windows and paste the copied text (CTRL+V).
+    Wait a few seconds, then press the "Return" (or "Enter") key, type "RUN" and then press the "Return" (or "Enter") key again.
+    Enjoy!
+Description:
+The program iterates over each cell of a 17 characters wide square.
+If the "point" belongs to one of the following four triangles, a "*" is printed; otherwise a " " is printed.
+
+    *            
+    **           
+    ***          
+    ****         
+    *****        
+    ******       
+    *******      
+    ********     
+    *********    
+    **********   
+    ***********  
+    ************ 
+    *************
+
+
+
+
+            *    
+           **    
+          ***    
+         ****    
+        *****    
+       ******    
+      *******    
+     ********    
+    *********    
+   **********    
+  ***********    
+ ************    
+*************    
+
+
+
+
+*************    
+ ************    
+  ***********    
+   **********    
+    *********    
+     ********    
+      *******    
+       ******    
+        *****    
+         ****    
+          ***    
+           **    
+            *    
+
+
+
+
+    *************
+    ************ 
+    ***********  
+    **********   
+    *********    
+    ********     
+    *******      
+    ******       
+    *****        
+    ****         
+    ***          
+    **           
+    *            
+
+Tiny Christmas Star program listing:
+1R=0
+2C=0
+3S=0
+4IFR<13IFC>3IFC<R+5S=1
+5IFR<13IFC<13IFC>11-RS=1
+6IFR>3IFC<13IFC>R-5S=1
+7IFR>3IFC>3IFC<21-RS=1
+8IFS=0PR" ";
+9IFS=1PR"*";
+10C=C+1
+11IFC<17GOTO3
+12PR
+13R=R+1
+14IFR<17GOTO2
+15END
+
+Verbose program listing:
+ 100 LET R=0
+ 110 LET C=0
+ 120 LET S=0
+ 130 IF R<13 THEN IF C>3 THEN IF C<R+5 THEN LET S=1
+ 140 IF R<13 THEN IF C<13 THEN IF C>11-R THEN LET S=1
+ 150 IF R>3 THEN IF C<13 THEN IF C>R-5 THEN LET S=1
+ 160 IF R>3 THEN IF C>3 THEN IF C<21-R THEN LET S=1
+ 800 IF S=0 THEN PRINT " ";
+ 810 IF S=1 THEN PRINT "*";
+ 900 LET C=C+1
+ 910 IF C<17 THEN GOTO 120
+ 915 PRINT
+ 920 LET R=R+1
+ 930 IF R<17 THEN GOTO 110
+1000 END
+
+Output:
+    *       *    
+    **     **    
+    ***   ***    
+    **** ****    
+*****************
+ *************** 
+  *************  
+   ***********   
+    *********    
+   ***********   
+  *************  
+ *************** 
+*****************
+    **** ****    
+    ***   ***    
+    **     **    
+    *       *    
+
+Comments:
+The original Tiny BASIC grammar does not include FOR loops, so IFs and GOTOs are used instead.
+See: http://www.ittybittycomputers.com/ittybitty/tinybasic/TBuserMan.htm#Syntax
+The (verbose version of the) program is so simple that it can be ported to most BASIC dialects (BBC Basic, Sinclair ZX81) (almost) without modifications.
+See the program in action:
+Cosmac ELF (Emma 02 emulator): https://www.youtube.com/watch?v=7xElR66LwwQ&t=54s
+TinyBASICBlazor: https://www.youtube.com/watch?v=i2EJBGYvd0E

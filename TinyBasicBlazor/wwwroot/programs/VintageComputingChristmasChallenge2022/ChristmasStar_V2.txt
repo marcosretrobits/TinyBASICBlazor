@@ -1,0 +1,15 @@
+ 100 r=0
+ 110 c=0
+ 120 s=0
+ 130 if r<13 if c>3 if c<r+5 s=1
+ 140 if r<13 if c<13 if c>11-r s=1
+ 150 if r>3 if c<13 if c>r-5 s=1
+ 160 if r>3 if c>3 if c<21-r s=1
+ 800 if s=0 print " ";
+ 810 if s=1 print "*";
+ 900 c=c+1
+ 910 if c<17 goto 120
+ 915 print
+ 920 r=r+1
+ 930 if r<17 goto 110
+1000 end

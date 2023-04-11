@@ -1,0 +1,16 @@
+<Name of Release>
+
+Author: <Name of Author or Handle / Group>
+Category: <Christmas Challenge or Wild>
+System:   <Atari, C64, Spectrum ZX80, ...>
+Language: <BASIC, Assembler, (include the version/variant, ...>
+Len source code: <# bytes>
+Len exe file:    <# bytes>
+Len code only:   <# bytes> (valid for assembler only; length of executable without BASIC stub)
+Instructions:
+<how to run the code in an emulator>
+<e.g. which emulator to use and what to do; could be as simple as: Install vice, drag and drop the prg file into it>
+Description:
+<how the code works>
+Comments:
+<anything left to say>
