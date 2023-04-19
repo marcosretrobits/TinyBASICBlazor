@@ -4,7 +4,7 @@ A [Tiny BASIC](https://en.wikipedia.org/wiki/Tiny_BASIC) environment in your web
 
 ## About the project
 
-![TinyBASICBlazor screenshot](images\screenshot.jpg)
+![TinyBASICBlazor screenshot](images/screenshot.jpg)
 
 TinyBASICBlazor is a [Blazor WebAssembly](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) [Tiny BASIC](https://en.wikipedia.org/wiki/Tiny_BASIC) environment, that allows to type and run Tiny BASIC programs in your web browser. TinyBASICBlazor is based on [TinyBasic.NET](http://www.thisiscool.com/tinybasicnet.htm), [Mohan Embar](http://www.thisiscool.com/)'s [C#](http://www.thisiscool.com/tinybasicnet.htm) [port]() of [Tom Pittman](http://www.ittybittycomputers.com/)'s [Tiny Basic](http://www.ittybittycomputers.com/IttyBitty/TinyBasic/index.htm) interpreter [C rewrite](http://www.ittybittycomputers.com/IttyBitty/TinyBasic/TinyBasic.c). Some sample BASIC programs are included.
 
